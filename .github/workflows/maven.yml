@@ -1,0 +1,34 @@
+name: Check DAT100 Java Innlevering 2 using CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 
+      uses: actions/setup-java@v4
+      with:
+        java-version: '23'
+        distribution: 'temurin'
+        cache: maven
+    - name: Compile with Maven
+      run: mvn --batch-mode --update-snapshots compile
+    - name: Run main 1
+      run: mvn exec:java -D"exec.mainClass"="no.hvl.dat100.javel.oppgave1.DayMain"
+    - name: Run main 2
+      run: mvn exec:java -D"exec.mainClass"="no.hvl.dat100.javel.oppgave2.MonthMain"
+    - name: Run main 3
+      run: mvn exec:java -D"exec.mainClass"="no.hvl.dat100.javel.oppgave3.CustomerMain"
+    - name: Run main 4
+      run: mvn exec:java -D"exec.mainClass"="no.hvl.dat100.javel.oppgave4.CustomersMain"
+    - name: Run main 5
+      run: mvn exec:java -D"exec.mainClass"="no.hvl.dat100.javel.oppgave5.InvoiceMain"
+    
