@@ -7,15 +7,19 @@ public class MonthlyPower {
     // a) print power usage for a month
     public static void print_PowerUsage(double[][] usage) {
 
-        // TODO
-
+    for (int day = 0; day < usage.length; day++) {
+            System.out.println("Day " + (day + 1) + ":");
+            DailyPower.printPowerUsage(usage[day]);
+        }
     }
 
     // b) print power prices for a month
     public static void print_PowerPrices(double[][] prices) {
 
-        // TODO
-
+        for (int day = 0; day < prices.length; day++) {
+            System.out.println("Day " + (day + 1) + ":");
+            DailyPower.printPowerPrices(prices[day]);
+        }
     }
 
     // c) compute total power usage for a month
@@ -23,8 +27,10 @@ public class MonthlyPower {
 
         double sum = 0;
 
-        // TODO
-
+        for (int day = 0; day < usage.length; day++) {
+            sum += DailyPower.computePowerUsage(usage[day]);
+        }
+        
         return sum;
     }
 
@@ -34,7 +40,13 @@ public class MonthlyPower {
         boolean exceeded = false;
         double usage = 0;
 
-        // TODO
+        for (int day = 0; day < powerusage.length; day++) {
+            usage += DailyPower.computePowerUsage(powerusage[day]);
+        }
+
+        if (usage > threshold) {
+            exceeded = true;
+        }
 
         return exceeded;
     }
@@ -44,7 +56,9 @@ public class MonthlyPower {
 
         double price = 0;
 
-        // TODO
+        for (int day = 0; day < usage.length; day++) {
+            price += DailyPower.computeSpotPrice(usage[day], prices[day]);
+        }
 
         return price;
     }
@@ -54,7 +68,9 @@ public class MonthlyPower {
 
         double support = 0;
 
-        // TODO
+        for (int day = 0; day < usage.length; day++) {
+            support += DailyPower.computePowerSupport(usage[day], prices[day]);
+        }
 
         return support;
     }
@@ -64,7 +80,9 @@ public class MonthlyPower {
 
         double price = 0;
 
-        // TODO
+        for (int day = 0; day < usage.length; day++) {
+            price += DailyPower.computeNorgesPrice(usage[day]);
+        }
 
         return price;
     }
